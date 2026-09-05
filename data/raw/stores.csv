@@ -1,0 +1,13 @@
+store_id,store_name,city,region,opening_date
+1,InsightMart Downtown Chicago,Chicago,Midwest,2021-03-15
+2,InsightMart Manhattan Flagship,New York,Northeast,2020-01-10
+3,InsightMart Dallas Galleria,Dallas,South,2021-07-22
+4,InsightMart LA Sunset,Los Angeles,West,2020-05-18
+5,InsightMart Seattle Center,Seattle,Northwest,2022-02-01
+6,InsightMart Denver Rockies,Denver,West,2022-06-14
+7,InsightMart Austin Tech Ridge,Austin,South,2021-11-05
+8,InsightMart Boston Back Bay,Boston,Northeast,2020-09-30
+9,InsightMart Atlanta Midtown,Atlanta,Southeast,2021-04-12
+10,InsightMart SF Bay Pavilion,San Francisco,West,2020-11-20
+11,InsightMart Miami Biscayne,Miami,Southeast,2022-08-19
+12,InsightMart Minneapolis Plaza,Minneapolis,Midwest,2023-01-15
