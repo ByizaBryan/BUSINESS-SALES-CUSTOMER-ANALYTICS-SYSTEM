@@ -1,0 +1,121 @@
+product_id,product_name,category_id,supplier_id,unit_cost,selling_price,stock_quantity,reorder_level,status
+1,UltraWireless Noise-Cancelling Headphones,1,1,95.0,189.99,82,15,Active
+2,SmartWatch Pro Series 5,1,7,120.0,239.99,150,20,Active
+3,Bluetooth Ergonomic Mechanical Keyboard,1,1,42.0,79.99,77,40,Active
+4,4K UltraHD Streaming Dongle,1,7,17.5,34.99,241,15,Active
+5,True Wireless Earbuds with Wireless Case,1,1,38.0,69.99,136,20,Active
+6,27-Inch 144Hz QHD Gaming Monitor,1,7,175.0,279.99,38,40,Active
+7,USB-C Dual 4K Universal Docking Station,1,1,65.0,119.99,304,30,Active
+8,Portable Waterproof Bluetooth Speaker 20W,1,7,28.0,54.99,326,25,Active
+9,High-Speed MagSafe Wireless Charging Pad,1,1,14.0,29.99,28,20,Active
+10,Smart Security Wi-Fi Camera 2K Indoor,1,7,22.0,44.99,199,25,Active
+11,PowerBank 20000mAh 65W Fast Charge,1,1,26.0,49.99,197,15,Active
+12,Noise-Isolating Studio Over-Ear Headphones,1,7,60.0,109.99,74,25,Active
+13,Smart Home Voice Assistant Speaker,1,1,30.0,59.99,334,25,Active
+14,Ultra-Slim Wireless Numeric Keypad,1,7,15.0,29.99,260,40,Active
+15,Multi-Port 100W GaN Travel Charger,1,1,24.0,47.99,218,15,Active
+16,Digital Drawing Graphics Tablet 10x6,1,7,45.0,89.99,346,40,Active
+17,Dash Cam 4K Front and Rear GPS,1,1,68.0,129.99,210,40,Active
+18,Smart LED Color Ambient Light Bar Duo,1,7,25.0,49.99,60,15,Active
+19,Precision Optical Wireless Mouse,1,1,12.5,24.99,173,15,Active
+20,Noise-Cancelling Conference Microphone,1,7,40.0,79.99,76,30,Active
+21,Premium Merino Wool Crewneck Sweater,2,2,28.0,74.99,350,25,Active
+22,Slim-Fit Stretch Denim Jeans,2,8,21.0,59.99,206,20,Active
+23,Weatherproof All-Season Expedition Parka,2,2,65.0,169.99,61,40,Active
+24,Breathable Athletic Performance Tee,2,8,8.5,24.99,298,20,Active
+25,Organic Pima Cotton Casual Polo Shirt,2,2,14.0,39.99,219,25,Discontinued
+26,Comfort Stretch Chino Trousers,2,8,18.0,49.99,310,20,Active
+27,Water-Resistant Softshell Trail Jacket,2,2,35.0,89.99,53,20,Active
+28,Seamless High-Waist Athletic Leggings,2,8,12.0,38.0,186,30,Active
+29,Brushed Fleece Pullover Hoodie,2,2,16.5,46.99,133,40,Active
+30,Pack of 3 Everyday Crewneck Undershirts,2,8,9.0,24.5,186,20,Active
+31,Tailored Linen Blend Summer Button-Down,2,2,16.0,44.99,227,30,Active
+32,Thermal Base Layer Compression Pants,2,8,11.5,29.99,96,20,Active
+33,Windproof Packable Running Vest,2,2,19.0,48.0,300,25,Active
+34,Classic Knit Ribbed Beanie Cap,2,8,5.0,18.0,244,40,Active
+35,Genuine Leather Minimalist Belt,2,2,12.0,34.99,137,20,Active
+36,Cushioned Merino Wool Hiking Socks 3pk,2,8,8.0,22.99,71,15,Active
+37,Quilted Lightweight Transitional Vest,2,2,24.0,64.99,103,20,Active
+38,Relaxed Fit Cotton Flannel Overshirt,2,8,17.5,46.0,241,40,Active
+39,Moisture-Wicking Training Shorts,2,2,9.5,27.99,220,40,Discontinued
+40,Polar Fleece Full-Zip Loungewear,2,8,20.0,52.0,295,25,Out Of Stock
+41,Stainless Steel Compact Espresso Machine,3,9,95.0,219.99,30,15,Active
+42,Tri-Ply Clad Stainless Cookware Set 10pc,3,3,62.0,149.99,299,25,Active
+43,Smart HEPA Air Purifier with PM2.5 Sensor,3,3,48.0,114.99,199,15,Active
+44,Enameled Cast Iron Dutch Oven 6-Quart,3,9,26.0,68.99,105,30,Active
+45,Programmable Precision Electric Kettle 1.7L,3,3,18.0,44.99,159,40,Active
+46,Multi-Function High-Speed Blender 1200W,3,9,42.0,99.99,284,15,Active
+47,Digital Dual-Zone Air Fryer 8-Quart,3,3,50.0,119.99,177,40,Active
+48,Handcrafted Japanese Santoku Chef Knife,3,9,22.0,54.99,103,25,Active
+49,Aromatherapy Ultrasonic Diffuser 500ml,3,3,11.0,28.99,301,40,Active
+50,Bamboo Modular Drawer Organizers 6pc,3,9,9.0,24.99,331,25,Active
+51,Weighted Cooling Blanket 15lb Organic Cotton,3,3,30.0,69.99,82,25,Active
+52,Non-Slip Microfiber Bath Mat Set 2pc,3,9,7.5,21.99,182,20,Active
+53,Vacuum Insulated French Press Coffee Maker,3,3,14.5,36.99,315,15,Active
+54,Ceramic Non-Stick Everyday Fry Pan 12-inch,3,9,15.0,38.0,273,15,Out Of Stock
+55,Smart Wi-Fi Food Dehydrator 5-Tray,3,3,38.0,84.99,297,20,Active
+56,Under-Cabinet Magnetic Knife Strip,3,9,8.0,21.99,268,40,Active
+57,Stainless Steel Kitchen Scale Precision 0.1g,3,3,7.0,19.99,295,40,Active
+58,Silicone Heat-Resistant Utensil Set 10pc,3,9,10.0,26.99,133,40,Active
+59,Memory Foam Contour Bed Pillow,3,3,14.0,34.99,127,25,Active
+60,Countertop Compost Bin Odorless Stainless,3,9,11.0,27.99,216,30,Active
+61,Hydrating Vitamin C + Hyaluronic Serum 30ml,4,4,7.5,28.99,256,15,Active
+62,Botanical Gentle Cleansing Facial Oil 150ml,4,4,6.2,22.5,57,25,Active
+63,Sonic Electric Toothbrush with 4 Heads,4,10,22.0,64.99,308,20,Active
+64,Mineral SPF 50 Sheer Sunscreen 100ml,4,4,5.5,18.99,28,15,Active
+65,Collagen Peptide Revitalizing Night Cream,4,10,9.0,34.99,55,20,Active
+66,Nourishing Argan & Keratin Hair Mask,4,4,6.8,24.0,41,25,Active
+67,Ionic Deep Conditioning Hair Dryer 1800W,4,10,25.0,69.99,146,25,Active
+68,Rosewater & Aloe Soothing Facial Toner,4,4,4.2,16.5,134,40,Active
+69,Ultrasonic Skin Scrubber Exfoliator Spatula,4,10,13.0,36.99,317,40,Active
+70,Organic Shea Butter Body Cream 250ml,4,4,5.8,19.99,267,30,Active
+71,Rechargeable Cordless Water Flosser 300ml,4,10,14.0,38.99,74,30,Active
+72,Biotin + Zinc Hair Growth Vitamins 60ct,4,4,6.5,22.99,235,30,Active
+73,Acupressure Mat and Neck Pillow Set,4,10,12.0,32.99,52,15,Active
+74,Gentle Exfoliating AHA/BHA Peeling Solution,4,4,6.0,21.0,198,15,Active
+75,Heated Eye Massager with Air Compression,4,10,24.0,59.99,122,40,Active
+76,Natural Charcoal Teeth Whitening Powder,4,4,3.8,14.99,241,20,Active
+77,Rose Quartz Facial Roller and Gua Sha,4,10,4.5,17.5,152,15,Active
+78,Epsom Salt & Lavender Muscle Soak 2kg,4,4,4.0,14.99,306,15,Active
+79,LED Light Therapy Face Mask 7 Colors,4,10,38.0,94.99,301,15,Out Of Stock
+80,Tea Tree Clarifying Spot Treatment 15ml,4,4,3.5,13.99,146,20,Active
+81,Pro-Grip Eco-Friendly Non-Slip Yoga Mat,5,5,13.0,34.99,271,20,Active
+82,High-Density Foam Roller 36-Inch Deep Tissue,5,5,8.5,22.99,55,20,Active
+83,Insulated Stainless Hydration Flask 32oz,5,10,9.5,26.99,224,25,Active
+84,Adjustable Quick-Select Dumbbell 50lb,5,5,95.0,199.99,257,25,Active
+85,Lightweight Ultralight 2-Person Backpacking Tent,5,10,58.0,139.99,309,30,Active
+86,Resistance Exercise Band Set 5-Resistance,5,5,7.0,19.99,176,20,Out Of Stock
+87,Trekking Poles Carbon Fiber Collapsible Pair,5,10,18.0,44.99,321,40,Active
+88,Speed Jump Rope Ball-Bearing Steel Cable,5,5,5.0,15.99,185,15,Active
+89,Hydration Running Backpack 2L Water Bladder,5,10,16.0,39.99,269,40,Active
+90,Exercise Ball 65cm Anti-Burst with Pump,5,5,8.0,21.99,296,20,Active
+91,Portable Camping Hammock with Tree Straps,5,10,11.0,28.99,285,15,Active
+92,Deep Tissue Percussion Muscle Massage Gun,5,5,32.0,79.99,60,40,Active
+93,Waterproof Dry Bag 20L with Phone Pouch,5,10,7.5,19.99,145,30,Active
+94,Pull-Up Bar Doorway Trainer Multi-Grip,5,5,14.0,34.99,316,20,Active
+95,Compact Camp Stove Burner Windproof Piezo,5,10,9.0,24.5,45,40,Active
+96,Gym Chalk Ball 2-Pack 100% Magnesium,5,5,4.0,12.99,323,40,Active
+97,Swimming Goggles Polarized Anti-Fog UV,5,10,6.5,18.99,158,20,Active
+98,Agility Ladder & Cones Speed Training Set,5,5,9.5,23.99,185,20,Active
+99,LED Rechargeable Headlamp 1000 Lumens,5,10,8.0,21.99,92,25,Active
+100,Weightlifting Wrist Wraps & Grips Set,5,5,5.5,16.99,62,15,Active
+101,Organic Single-Origin Roast Coffee Beans 1lb,6,6,6.2,14.99,313,15,Active
+102,Matcha Green Tea Powder Ceremonial Grade 100g,6,6,9.5,22.99,134,40,Active
+103,Extra Virgin Cold-Pressed Olive Oil 750ml,6,6,7.8,17.99,203,15,Active
+104,Raw Organic Wildflower Honey 500g Glass Jar,6,6,5.2,12.99,214,25,Active
+105,Dark Chocolate Almond Artisanal Bark 250g,6,6,3.5,8.99,303,25,Active
+106,Organic Whole Spelt Granola with Cranberries,6,6,3.8,8.49,295,15,Active
+107,Pure Maple Syrup Grade A Amber 500ml,6,6,6.0,13.99,308,25,Active
+108,Himalayan Pink Rock Salt Grinder 300g,6,6,2.2,5.99,78,20,Active
+109,Aged Balsamic Vinegar of Modena 250ml,6,6,6.5,15.99,79,40,Active
+110,Organic Medjool Dates Jumbo 1lb Box,6,6,4.5,10.99,169,40,Active
+111,Gluten-Free Roasted Nut & Seed Mix 400g,6,6,4.8,11.49,200,20,Active
+112,Artisan Loose Leaf Earl Grey Tea 150g Tin,6,6,4.2,10.5,160,40,Active
+113,Cold-Brew Coffee Pitcher Concentrated Packs,6,6,5.5,13.49,51,15,Active
+114,Crispy Rosemary Sea Salt Flatbread Crackers,6,6,2.1,5.49,166,15,Active
+115,Avocado Oil Cooking Spray Pure Expeller-Pressed,6,6,3.4,7.99,91,25,Active
+116,Organic Rolled Oats Whole Grain 2lb Bag,6,6,2.0,5.29,251,40,Active
+117,Spiced Chai Tea Concentrate Blend 32oz,6,6,3.6,8.99,312,15,Active
+118,Smoked Paprika & Garlic Dry Rub Blend 120g,6,6,2.3,6.49,101,40,Active
+119,Kombucha Starter Probiotic Tea 12pk Cans,6,6,12.0,24.99,214,40,Active
+120,Stone-Ground Organic Almond Butter 16oz,6,6,5.8,12.99,245,20,Active
