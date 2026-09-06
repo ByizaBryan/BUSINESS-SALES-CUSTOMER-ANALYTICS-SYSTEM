@@ -1,0 +1,508 @@
+/* ==============================================================================
+   InsightMart Business Sales & Customer Analytics System
+   File: app/static/css/style.css
+   Description: Modern, responsive executive BI dashboard styling.
+   ============================================================================== */
+
+:root {
+    --sidebar-width: 260px;
+    --primary-color: #1e3a8a;       /* Corporate Deep Blue */
+    --primary-hover: #1e40af;
+    --primary-light: #eff6ff;
+    --secondary-color: #0d9488;     /* Teal */
+    --accent-color: #f59e0b;        /* Amber */
+    --danger-color: #ef4444;        /* Crimson Red */
+    --success-color: #10b981;       /* Emerald Green */
+    --sidebar-bg: #0f172a;          /* Slate 900 */
+    --sidebar-text: #94a3b8;        /* Slate 400 */
+    --sidebar-hover: #1e293b;       /* Slate 800 */
+    --sidebar-active: #2563eb;      /* Vibrant Blue */
+    --body-bg: #f8fafc;             /* Slate 50 */
+    --card-bg: #ffffff;
+    --text-main: #1e293b;           /* Slate 800 */
+    --text-muted: #64748b;          /* Slate 500 */
+    --border-color: #e2e8f0;        /* Slate 200 */
+    --card-radius: 12px;
+    --transition: all 0.25s ease-in-out;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* ------------------------------------------------------------------------------
+   Sidebar Navigation
+------------------------------------------------------------------------------ */
+#sidebar-wrapper {
+    width: var(--sidebar-width);
+    min-height: 100vh;
+    background-color: var(--sidebar-bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-brand {
+    padding: 24px 20px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-brand i {
+    color: #38bdf8;
+    font-size: 1.4rem;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 16px 12px;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.sidebar-menu .menu-header {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    padding: 12px 14px 6px;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: var(--transition);
+    margin-bottom: 4px;
+}
+
+.sidebar-menu li a i {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-menu li a:hover {
+    color: #ffffff;
+    background-color: var(--sidebar-hover);
+}
+
+.sidebar-menu li.active a {
+    color: #ffffff;
+    background-color: var(--sidebar-active);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.sidebar-footer {
+    padding: 18px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+/* ------------------------------------------------------------------------------
+   Main Content Layout
+------------------------------------------------------------------------------ */
+#page-content-wrapper {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+/* ------------------------------------------------------------------------------
+   Top Navigation Bar
+------------------------------------------------------------------------------ */
+.top-navbar {
+    background-color: #ffffff;
+    height: 68px;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 990;
+}
+
+.top-navbar .page-title h4 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-main);
+}
+
+.top-navbar .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.badge-live {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+    font-size: 0.78rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pulse-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #10b981;
+    border-radius: 50%;
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* ------------------------------------------------------------------------------
+   Universal Dynamic Filter Bar
+------------------------------------------------------------------------------ */
+.filter-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 16px 20px;
+    margin: 20px 28px 0 28px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.filter-card .form-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.filter-card .form-select, .filter-card .form-control {
+    font-size: 0.85rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 7px 12px;
+    color: var(--text-main);
+}
+
+.filter-card .form-select:focus, .filter-card .form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* ------------------------------------------------------------------------------
+   Main View Container
+------------------------------------------------------------------------------ */
+.main-container {
+    padding: 24px 28px 48px;
+    flex-grow: 1;
+}
+
+/* ------------------------------------------------------------------------------
+   Executive KPI Cards
+------------------------------------------------------------------------------ */
+.kpi-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 22px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    height: 100%;
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.kpi-card .kpi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.kpi-card .kpi-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.kpi-card .kpi-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+}
+
+.kpi-blue .kpi-icon { background-color: #dbeafe; color: #1d4ed8; }
+.kpi-green .kpi-icon { background-color: #d1fae5; color: #047857; }
+.kpi-purple .kpi-icon { background-color: #f3e8ff; color: #7e22ce; }
+.kpi-amber .kpi-icon { background-color: #fef3c7; color: #b45309; }
+.kpi-teal .kpi-icon { background-color: #ccfbf1; color: #0f766e; }
+.kpi-indigo .kpi-icon { background-color: #e0e7ff; color: #4338ca; }
+
+.kpi-card .kpi-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-main);
+    margin-bottom: 6px;
+    line-height: 1.1;
+}
+
+.kpi-card .kpi-subtext {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.badge-trend-up {
+    color: #10b981;
+    font-weight: 600;
+}
+
+/* ------------------------------------------------------------------------------
+   Analytics Chart Cards
+------------------------------------------------------------------------------ */
+.chart-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 22px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    height: calc(100% - 24px);
+}
+
+.chart-card .card-header-clean {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.chart-card .card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.chart-card .card-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 3px;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+}
+
+/* ------------------------------------------------------------------------------
+   Data Tables
+------------------------------------------------------------------------------ */
+.table-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.table-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.table-title {
+    margin: 0;
+    font-size: 1.08rem;
+    font-weight: 700;
+}
+
+.table-responsive {
+    margin: 0;
+}
+
+.custom-table {
+    margin: 0;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.custom-table thead th {
+    background-color: #f8fafc;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.custom-table tbody td {
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.custom-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.badge-segment {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.badge-high { background-color: #fee2e2; color: #991b1b; }
+.badge-medium { background-color: #e0f2fe; color: #075985; }
+.badge-low { background-color: #f1f5f9; color: #475569; }
+
+.badge-instore { background-color: #dcfce7; color: #166534; }
+.badge-online { background-color: #ffedd5; color: #9a3412; }
+
+/* ------------------------------------------------------------------------------
+   Insight Cards
+------------------------------------------------------------------------------ */
+.insight-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-left: 5px solid #3b82f6;
+    border-radius: var(--card-radius);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    transition: var(--transition);
+}
+
+.insight-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.insight-card.warning { border-left-color: #f59e0b; }
+.insight-card.danger { border-left-color: #ef4444; }
+.insight-card.positive { border-left-color: #10b981; }
+
+.insight-meta {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.insight-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 12px;
+}
+
+.insight-section {
+    margin-bottom: 12px;
+}
+
+.insight-section-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #475569;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.insight-text {
+    font-size: 0.92rem;
+    color: #334155;
+    line-height: 1.55;
+}
+
+/* ------------------------------------------------------------------------------
+   Pagination
+------------------------------------------------------------------------------ */
+.pagination-container {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+}
+
+/* ------------------------------------------------------------------------------
+   Responsive Design
+------------------------------------------------------------------------------ */
+@media (max-width: 992px) {
+    #sidebar-wrapper {
+        margin-left: calc(-1 * var(--sidebar-width));
+    }
+    #sidebar-wrapper.toggled {
+        margin-left: 0;
+    }
+    #page-content-wrapper {
+        margin-left: 0;
+        width: 100%;
+    }
+}
