@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}InsightMart - Customer Segmentation & Loyalty Analytics{% endblock %}
+{% block page_title %}Customer Segmentation & Lifetime Value{% endblock %}
+
+{% block content %}
+<!-- Customer KPIs Scorecard -->
+<div class="row g-3 mb-4">
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-blue">
+            <div class="kpi-header">
+                <span class="kpi-title">Registered Accounts</span>
+                <div class="kpi-icon"><i class="fa-solid fa-users"></i></div>
+            </div>
+            <div class="kpi-value">5,000</div>
+            <div class="kpi-subtext">Total customer database size</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-green">
+            <div class="kpi-header">
+                <span class="kpi-title">Active Transacting Cohort</span>
+                <div class="kpi-icon"><i class="fa-solid fa-user-check"></i></div>
+            </div>
+            <div class="kpi-value" id="activeCustomersKpi">4,990</div>
+            <div class="kpi-subtext text-success fw-bold">99.8% Active Purchase Rate</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-purple">
+            <div class="kpi-header">
+                <span class="kpi-title">Repeat Customer Rate</span>
+                <div class="kpi-icon"><i class="fa-solid fa-rotate"></i></div>
+            </div>
+            <div class="kpi-value">91.4%</div>
+            <div class="kpi-subtext text-primary fw-bold">2+ Completed Orders</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-amber">
+            <div class="kpi-header">
+                <span class="kpi-title">Average Customer Lifetime Spend</span>
+                <div class="kpi-icon"><i class="fa-solid fa-wallet"></i></div>
+            </div>
+            <div class="kpi-value" id="avgSpendKpi">$1,320.10</div>
+            <div class="kpi-subtext">Cumulative average gross spend</div>
+        </div>
+    </div>
+</div>
+
+<!-- Customer Segmentation Visualizations -->
+<div class="row g-4 mb-4">
+    <div class="col-xl-5 col-lg-6">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Customer Base by Segment</h5>
+                    <div class="card-subtitle">Distribution of High, Medium, and Low-Value tiers</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 300px;">
+                <canvas id="customerSegmentsDonutChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-7 col-lg-6">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Revenue Contribution by Segment</h5>
+                    <div class="card-subtitle">Evaluating the 80/20 customer value concentration</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 300px;">
+                <canvas id="segmentRevenueBarChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Segment Performance Breakdown Table -->
+<div class="table-card mb-4">
+    <div class="table-header">
+        <div>
+            <h5 class="table-title">Customer Segment Strategic Profile</h5>
+            <div class="text-muted" style="font-size: 0.82rem;">Comparative metrics across customer tiers</div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table custom-table" id="segmentSummaryTable">
+            <thead>
+                <tr>
+                    <th>Customer Segment</th>
+                    <th class="text-center">Customer Count</th>
+                    <th class="text-center">Total Orders</th>
+                    <th class="text-end">Total Revenue</th>
+                    <th class="text-end">Total Profit</th>
+                    <th class="text-end">Avg Spend / Customer</th>
+                    <th class="text-end">Average Order Value</th>
+                </tr>
+            </thead>
+            <tbody id="segmentSummaryTableBody">
+                <tr><td colspan="7" class="text-center text-muted py-4">Loading segment summary...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Top 20 Lifetime Value Leaderboard -->
+<div class="table-card">
+    <div class="table-header">
+        <div>
+            <h5 class="table-title">Top 15 Customer Lifetime Value (CLV) Champions</h5>
+            <div class="text-muted" style="font-size: 0.82rem;">InsightMart's most profitable VIP accounts</div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table custom-table" id="topCustomersDetailedTable">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Customer Name</th>
+                    <th>Segment</th>
+                    <th>Metro City</th>
+                    <th class="text-center">Completed Orders</th>
+                    <th class="text-center">Units Purchased</th>
+                    <th class="text-end">Total Lifetime Spend</th>
+                    <th class="text-end">Gross Profit Contributed</th>
+                    <th class="text-end">Average Order Value</th>
+                </tr>
+            </thead>
+            <tbody id="topCustomersDetailedTableBody">
+                <tr><td colspan="9" class="text-center text-muted py-4">Loading customer leaderboard...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/customers.js') }}"></script>
+{% endblock %}
