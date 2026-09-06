@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}InsightMart - Executive Analytics Dashboard{% endblock %}
+{% block page_title %}Executive Analytics Overview{% endblock %}
+
+{% block content %}
+<!-- KPI Scorecard Section -->
+<div class="row g-3 mb-4">
+    <!-- Total Revenue -->
+    <div class="col-xl-2 col-md-4 col-sm-6">
+        <div class="kpi-card kpi-blue">
+            <div class="kpi-header">
+                <span class="kpi-title">Total Revenue</span>
+                <div class="kpi-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+            </div>
+            <div class="kpi-value" id="kpiRevenue">$0.00</div>
+            <div class="kpi-subtext">
+                <span class="badge-trend-up"><i class="fa-solid fa-arrow-trend-up"></i> Live</span>
+                <span>Gross net sales</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Gross Profit -->
+    <div class="col-xl-2 col-md-4 col-sm-6">
+        <div class="kpi-card kpi-green">
+            <div class="kpi-header">
+                <span class="kpi-title">Gross Profit</span>
+                <div class="kpi-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            </div>
+            <div class="kpi-value" id="kpiProfit">$0.00</div>
+            <div class="kpi-subtext">
+                <span class="text-success fw-bold"><i class="fa-solid fa-sack-dollar"></i> Net</span>
+                <span>After product COGS</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profit Margin % -->
+    <div class="col-xl-2 col-md-4 col-sm-6">
+        <div class="kpi-card kpi-purple">
+            <div class="kpi-header">
+                <span class="kpi-title">Profit Margin</span>
+                <div class="kpi-icon"><i class="fa-solid fa-percent"></i></div>
+            </div>
+            <div class="kpi-value" id="kpiMargin">0.0%</div>
+            <div class="kpi-subtext">
+                <span class="text-primary fw-bold">Blended</span>
+                <span>Across all categories</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Orders -->
+    <div class="col-xl-2 col-md-4 col-sm-6">
+        <div class="kpi-card kpi-amber">
+            <div class="kpi-header">
+                <span class="kpi-title">Total Orders</span>
+                <div class="kpi-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            </div>
+            <div class="kpi-value" id="kpiOrders">0</div>
+            <div class="kpi-subtext">
+                <span class="text-warning fw-bold"><i class="fa-solid fa-check"></i> Orders</span>
+                <span>Completed sales</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Units Sold -->
+    <div class="col-xl-2 col-md-4 col-sm-6">
+        <div class="kpi-card kpi-teal">
+            <div class="kpi-header">
+                <span class="kpi-title">Units Sold</span>
+                <div class="kpi-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+            </div>
+            <div class="kpi-value" id="kpiUnits">0</div>
+            <div class="kpi-subtext">
+                <span class="text-info fw-bold">Quantity</span>
+                <span>Line items shipped</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Average Order Value (AOV) -->
+    <div class="col-xl-2 col-md-4 col-sm-6">
+        <div class="kpi-card kpi-indigo">
+            <div class="kpi-header">
+                <span class="kpi-title">Avg Order Value</span>
+                <div class="kpi-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+            </div>
+            <div class="kpi-value" id="kpiAOV">$0.00</div>
+            <div class="kpi-subtext">
+                <span class="text-primary fw-bold">Ticket</span>
+                <span>Revenue per checkout</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Primary Charts Row: Revenue Trend & Category Breakdown -->
+<div class="row g-4 mb-4">
+    <!-- Revenue & Profit Trend Chart -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Monthly Revenue & Profit Momentum</h5>
+                    <div class="card-subtitle">Month-over-month trajectory (2024 - 2025)</div>
+                </div>
+                <div class="badge bg-light text-dark border">Area Comparison</div>
+            </div>
+            <div class="chart-container" style="height: 320px;">
+                <canvas id="revenueTrendChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sales by Category Chart -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Category Revenue Mix</h5>
+                    <div class="card-subtitle">Contribution by merchandise department</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 320px;">
+                <canvas id="categoryChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Secondary Charts Row: Top 10 Products & Store Revenue Comparison -->
+<div class="row g-4 mb-4">
+    <!-- Top 10 Products Horizontal Bar -->
+    <div class="col-xl-6 col-lg-6">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Top 10 Hero Products by Revenue</h5>
+                    <div class="card-subtitle">Ranked by gross sales volume</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 340px;">
+                <canvas id="topProductsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Revenue by Store Branch Bar -->
+    <div class="col-xl-6 col-lg-6">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Store Branch Performance Benchmarking</h5>
+                    <div class="card-subtitle">Total revenue generated per retail location</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 340px;">
+                <canvas id="storePerformanceChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tertiary Row: Channel & Payment Breakdown & Top Customers Leaderboard -->
+<div class="row g-4">
+    <!-- Sales Channels & Payment Methods -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="chart-card mb-4" style="height: auto;">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Omnichannel Channel Share</h5>
+                    <div class="card-subtitle">In-Store vs Online digital fulfillment</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 200px;">
+                <canvas id="channelChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-card" style="height: auto;">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Payment Method Preferences</h5>
+                    <div class="card-subtitle">Customer transaction tender split</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 200px;">
+                <canvas id="paymentChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Customers Quick Table -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="table-card">
+            <div class="table-header">
+                <div>
+                    <h5 class="table-title">Top Customer Lifetime Value (CLV) Leaders</h5>
+                    <div class="text-muted" style="font-size: 0.8rem;">Highest spending retail accounts across all branches</div>
+                </div>
+                <a href="/customers" class="btn btn-outline-primary btn-sm">View All Customers</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table custom-table" id="topCustomersTable">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Segment</th>
+                            <th>City</th>
+                            <th class="text-center">Orders</th>
+                            <th class="text-end">Total Spent</th>
+                            <th class="text-end">AOV</th>
+                        </tr>
+                    </thead>
+                    <tbody id="topCustomersTableBody">
+                        <tr><td colspan="6" class="text-center text-muted py-4">Loading top customer accounts...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
