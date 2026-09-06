@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}InsightMart - Sales Analytics & Transactions{% endblock %}
+{% block page_title %}Sales & Transaction Analytics{% endblock %}
+
+{% block content %}
+<!-- Sales Summary KPI Row -->
+<div class="row g-3 mb-4">
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-blue">
+            <div class="kpi-header">
+                <span class="kpi-title">Gross Realized Sales</span>
+                <div class="kpi-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+            </div>
+            <div class="kpi-value" id="salesKpiRevenue">$0.00</div>
+            <div class="kpi-subtext">Net after customer discounts</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-green">
+            <div class="kpi-header">
+                <span class="kpi-title">Gross Operating Profit</span>
+                <div class="kpi-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+            </div>
+            <div class="kpi-value" id="salesKpiProfit">$0.00</div>
+            <div class="kpi-subtext">Operating profit contribution</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-amber">
+            <div class="kpi-header">
+                <span class="kpi-title">Completed Orders</span>
+                <div class="kpi-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            </div>
+            <div class="kpi-value" id="salesKpiOrders">0</div>
+            <div class="kpi-subtext">Unique transaction checkouts</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-indigo">
+            <div class="kpi-header">
+                <span class="kpi-title">Average Order Value</span>
+                <div class="kpi-icon"><i class="fa-solid fa-receipt"></i></div>
+            </div>
+            <div class="kpi-value" id="salesKpiAOV">$0.00</div>
+            <div class="kpi-subtext">Average spend per transaction</div>
+        </div>
+    </div>
+</div>
+
+<!-- Secondary Analytics Charts Row -->
+<div class="row g-4 mb-4">
+    <div class="col-lg-8">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Sales Volume & Average Ticket Progression</h5>
+                    <div class="card-subtitle">Monthly orders vs basket value</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 280px;">
+                <canvas id="salesVolumeChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Channel Revenue Split</h5>
+                    <div class="card-subtitle">In-Store vs E-Commerce</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 280px;">
+                <canvas id="salesChannelChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Interactive Transaction Table Section -->
+<div class="table-card">
+    <div class="table-header">
+        <div>
+            <h5 class="table-title">Live Sales Transaction Ledger</h5>
+            <div class="text-muted" style="font-size: 0.82rem;">Searchable, filterable line-item order details from MySQL</div>
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+            <div class="input-group input-group-sm" style="width: 280px;">
+                <span class="input-group-text bg-light"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+                <input type="text" class="form-control" id="transactionSearchInput" placeholder="Search customer, store, SKU...">
+            </div>
+            <button class="btn btn-outline-success btn-sm" id="exportCsvBtn" title="Export Filtered CSV">
+                <i class="fa-solid fa-file-excel me-1"></i> Export
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table custom-table" id="transactionsTable">
+            <thead>
+                <tr>
+                    <th>Sale ID</th>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Store Branch</th>
+                    <th>Product SKU</th>
+                    <th>Channel</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-end">Revenue</th>
+                    <th class="text-end">Profit</th>
+                    <th class="text-end">Margin</th>
+                </tr>
+            </thead>
+            <tbody id="transactionsTableBody">
+                <tr><td colspan="10" class="text-center text-muted py-4">Loading sales transaction records...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-container">
+        <div class="text-muted" style="font-size: 0.85rem;" id="paginationInfo">
+            Showing 0 to 0 of 0 transactions
+        </div>
+        <div class="btn-group btn-group-sm" role="group">
+            <button type="button" class="btn btn-outline-secondary" id="prevPageBtn" disabled>
+                <i class="fa-solid fa-chevron-left me-1"></i> Previous
+            </button>
+            <button type="button" class="btn btn-outline-primary" id="currentPageDisplay" disabled>1</button>
+            <button type="button" class="btn btn-outline-secondary" id="nextPageBtn">
+                Next <i class="fa-solid fa-chevron-right ms-1"></i>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/sales.js') }}"></script>
+{% endblock %}
