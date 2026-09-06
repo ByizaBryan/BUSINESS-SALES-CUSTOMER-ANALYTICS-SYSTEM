@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}InsightMart - Product Intelligence & Catalog Analytics{% endblock %}
+{% block page_title %}Product & Merchandise Analytics{% endblock %}
+
+{% block content %}
+<!-- Product Intelligence KPIs Row -->
+<div class="row g-3 mb-4">
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-blue">
+            <div class="kpi-header">
+                <span class="kpi-title">Active SKUs</span>
+                <div class="kpi-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+            </div>
+            <div class="kpi-value" id="prodKpiTotalSKUs">120</div>
+            <div class="kpi-subtext">Catalog items across 6 departments</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-green">
+            <div class="kpi-header">
+                <span class="kpi-title">Average Catalog Margin</span>
+                <div class="kpi-icon"><i class="fa-solid fa-percent"></i></div>
+            </div>
+            <div class="kpi-value" id="prodKpiAvgMargin">48.9%</div>
+            <div class="kpi-subtext">Gross profitability spread</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-purple">
+            <div class="kpi-header">
+                <span class="kpi-title">Highest Margin Dept</span>
+                <div class="kpi-icon"><i class="fa-solid fa-medal"></i></div>
+            </div>
+            <div class="kpi-value" style="font-size: 1.45rem;">Health & Beauty</div>
+            <div class="kpi-subtext text-success fw-bold">69.2% Average Margin</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-amber">
+            <div class="kpi-header">
+                <span class="kpi-title">Top Hero Product</span>
+                <div class="kpi-icon"><i class="fa-solid fa-crown"></i></div>
+            </div>
+            <div class="kpi-value" style="font-size: 1.25rem;">UltraWireless ANC</div>
+            <div class="kpi-subtext">$1.43M+ in Total Sales</div>
+        </div>
+    </div>
+</div>
+
+<!-- Product Margin vs Revenue Scatter / Bar Analysis -->
+<div class="row g-4 mb-4">
+    <div class="col-xl-6">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Top 10 High Revenue Leaders</h5>
+                    <div class="card-subtitle">Volume and top-line cash generation</div>
+                </div>
+                <span class="badge bg-primary">Hero SKUs</span>
+            </div>
+            <div class="chart-container" style="height: 320px;">
+                <canvas id="topProductsBarChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-6">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Bottom 10 Underperforming Products</h5>
+                    <div class="card-subtitle">Lowest volume / review for promotion or clearance</div>
+                </div>
+                <span class="badge bg-warning text-dark">Action Needed</span>
+            </div>
+            <div class="chart-container" style="height: 320px;">
+                <canvas id="underperformingBarChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Complete Product Matrix Table -->
+<div class="table-card">
+    <div class="table-header">
+        <div>
+            <h5 class="table-title">Merchandise Catalog Performance Matrix</h5>
+            <div class="text-muted" style="font-size: 0.82rem;">Complete inventory, cost, pricing, units sold, and margin audit</div>
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+            <input type="text" class="form-control form-control-sm" id="catalogSearchInput" placeholder="Filter products..." style="width: 240px;">
+            <select class="form-select form-select-sm" id="catalogSortSelect" style="width: 180px;">
+                <option value="rev_desc">Sort: Revenue (High to Low)</option>
+                <option value="margin_desc">Sort: Margin % (High to Low)</option>
+                <option value="profit_desc">Sort: Profit (High to Low)</option>
+                <option value="units_desc">Sort: Units Sold (High to Low)</option>
+                <option value="stock_asc">Sort: Stock (Low to High)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table custom-table" id="catalogTable">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Supplier</th>
+                    <th class="text-end">Unit Cost</th>
+                    <th class="text-end">Selling Price</th>
+                    <th class="text-center">Stock</th>
+                    <th class="text-center">Units Sold</th>
+                    <th class="text-end">Revenue</th>
+                    <th class="text-end">Profit</th>
+                    <th class="text-end">Margin</th>
+                    <th class="text-center">Status</th>
+                </tr>
+            </thead>
+            <tbody id="catalogTableBody">
+                <tr><td colspan="11" class="text-center text-muted py-4">Loading product catalog metrics...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/products.js') }}"></script>
+{% endblock %}
