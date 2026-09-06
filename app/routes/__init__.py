@@ -1,0 +1,3 @@
+"""
+InsightMart App Routes Package
+"""
