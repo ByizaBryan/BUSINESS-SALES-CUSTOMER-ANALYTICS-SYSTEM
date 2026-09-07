@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block title %}InsightMart - System Architecture & IS Portfolio{% endblock %}
+{% block page_title %}Information Systems Architecture & Portfolio Overview{% endblock %}
+
+{% block content %}
+<!-- Project Hero Banner -->
+<div class="card border-0 bg-dark text-white p-4 mb-4" style="border-radius: var(--card-radius); background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);">
+    <div class="row align-items-center">
+        <div class="col-lg-8">
+            <span class="badge bg-primary px-3 py-2 text-uppercase mb-2" style="letter-spacing: 0.08em;">Capstone Portfolio Project</span>
+            <h3 class="fw-bold mb-2">Business Sales & Customer Analytics System</h3>
+            <p class="text-white-50 mb-3" style="font-size: 1.05rem;">
+                A production-grade Business Intelligence and Decision Support System for <strong>InsightMart</strong>, 
+                demonstrating end-to-end competencies in Database Architecture, ETL Pipeline Engineering, SQL Analytics, 
+                RESTful API Design, and Web Dashboard Visualization.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-secondary"><i class="fa-solid fa-database me-1"></i> MySQL 8.0</span>
+                <span class="badge bg-secondary"><i class="fa-brands fa-python me-1"></i> Python 3.14</span>
+                <span class="badge bg-secondary"><i class="fa-solid fa-server me-1"></i> Flask 3.1</span>
+                <span class="badge bg-secondary"><i class="fa-solid fa-table me-1"></i> Pandas & NumPy</span>
+                <span class="badge bg-secondary"><i class="fa-solid fa-chart-pie me-1"></i> Chart.js</span>
+                <span class="badge bg-secondary"><i class="fa-brands fa-bootstrap me-1"></i> Bootstrap 5.3</span>
+            </div>
+        </div>
+        <div class="col-lg-4 text-center mt-3 mt-lg-0">
+            <div class="p-3 bg-white bg-opacity-10 rounded border border-white border-opacity-25 text-start">
+                <div class="fw-bold text-white mb-1"><i class="fa-solid fa-user-graduate me-2 text-warning"></i> Author Information</div>
+                <div class="text-white-50 small">Information Systems & Business Analytics</div>
+                <div class="text-white-50 small">GitHub: <a href="https://github.com/ByizaBryan/BUSINESS-SALES-CUSTOMER-ANALYTICS-SYSTEM" class="text-info text-decoration-none" target="_blank">ByizaBryan</a></div>
+                <div class="mt-2 text-success fw-bold small"><i class="fa-solid fa-circle-check me-1"></i> Ready for Internship Evaluation</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Architecture Flowchart Card -->
+<div class="card border-0 p-4 mb-4 shadow-sm" style="border-radius: var(--card-radius);">
+    <h5 class="fw-bold mb-3"><i class="fa-solid fa-network-wired text-primary me-2"></i> End-to-End System Data Flow</h5>
+    <div class="row g-3 text-center">
+        <div class="col-md-2 col-6">
+            <div class="p-3 border rounded bg-light h-100">
+                <i class="fa-solid fa-store fa-2x text-primary mb-2"></i>
+                <h6 class="fw-bold mb-1">1. Retail Data</h6>
+                <div class="text-muted small">Omnichannel transactions across 12 store branches and digital checkout</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-6">
+            <div class="p-3 border rounded bg-light h-100">
+                <i class="fa-solid fa-database fa-2x text-info mb-2"></i>
+                <h6 class="fw-bold mb-1">2. MySQL Database</h6>
+                <div class="text-muted small">3NF relational model, constraints, foreign keys, indexes, and views</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-6">
+            <div class="p-3 border rounded bg-light h-100">
+                <i class="fa-solid fa-broom fa-2x text-warning mb-2"></i>
+                <h6 class="fw-bold mb-1">3. Python ETL</h6>
+                <div class="text-muted small">Pandas validation, noise removal, and financial derivations</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-6">
+            <div class="p-3 border rounded bg-light h-100">
+                <i class="fa-solid fa-gears fa-2x text-success mb-2"></i>
+                <h6 class="fw-bold mb-1">4. Flask REST API</h6>
+                <div class="text-muted small">Secure parameterized SQL query endpoints returning analytical JSON</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-6">
+            <div class="p-3 border rounded bg-light h-100">
+                <i class="fa-solid fa-chart-column fa-2x text-danger mb-2"></i>
+                <h6 class="fw-bold mb-1">5. BI Dashboard</h6>
+                <div class="text-muted small">Responsive HTML5/Bootstrap UI with dynamic Chart.js cross-filtering</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-6">
+            <div class="p-3 border rounded bg-light h-100">
+                <i class="fa-solid fa-lightbulb fa-2x text-primary mb-2"></i>
+                <h6 class="fw-bold mb-1">6. Decision Support</h6>
+                <div class="text-muted small">Actionable executive insights driving margin expansion & growth</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Database ERD & Schema Documentation -->
+<div class="row g-4 mb-4">
+    <div class="col-xl-6">
+        <div class="card border-0 p-4 shadow-sm h-100" style="border-radius: var(--card-radius);">
+            <h5 class="fw-bold mb-3"><i class="fa-solid fa-diagram-project text-primary me-2"></i> Relational Database Design (3NF)</h5>
+            <p class="text-muted" style="font-size: 0.9rem;">
+                The relational database schema is normalized to Third Normal Form (3NF) to eliminate update anomalies, 
+                ensure referential integrity, and optimize aggregation performance.
+            </p>
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered" style="font-size: 0.85rem;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Table</th>
+                            <th>Primary Key</th>
+                            <th>Foreign Keys</th>
+                            <th>Core Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold">CATEGORIES</td>
+                            <td><code>category_id</code></td>
+                            <td>—</td>
+                            <td>Merchandise department grouping</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">SUPPLIERS</td>
+                            <td><code>supplier_id</code></td>
+                            <td>—</td>
+                            <td>Vendor directory & procurement</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">PRODUCTS</td>
+                            <td><code>product_id</code></td>
+                            <td><code>category_id, supplier_id</code></td>
+                            <td>SKU pricing, costs, inventory stock</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">CUSTOMERS</td>
+                            <td><code>customer_id</code></td>
+                            <td>—</td>
+                            <td>Demographics & RFM loyalty tiers</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">STORES</td>
+                            <td><code>store_id</code></td>
+                            <td>—</td>
+                            <td>Retail branches & geographic regions</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">SALES</td>
+                            <td><code>sale_id</code></td>
+                            <td><code>customer_id, store_id</code></td>
+                            <td>Order headers, channels & tender</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">SALE_ITEMS</td>
+                            <td><code>sale_item_id</code></td>
+                            <td><code>sale_id, product_id</code></td>
+                            <td>Line item volume, price & discount</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- KPI Formulas & Business Metrics Reference -->
+    <div class="col-xl-6">
+        <div class="card border-0 p-4 shadow-sm h-100" style="border-radius: var(--card-radius);">
+            <h5 class="fw-bold mb-3"><i class="fa-solid fa-calculator text-primary me-2"></i> Business KPI Mathematical Formulations</h5>
+            <div class="list-group list-group-flush" style="font-size: 0.88rem;">
+                <div class="list-group-item px-0">
+                    <strong>1. Line Revenue:</strong>
+                    <div class="text-muted"><code>Revenue = (Quantity × Unit Price) − Discount</code></div>
+                </div>
+                <div class="list-group-item px-0">
+                    <strong>2. Cost of Goods Sold (COGS):</strong>
+                    <div class="text-muted"><code>Cost = Quantity × Unit Cost</code></div>
+                </div>
+                <div class="list-group-item px-0">
+                    <strong>3. Gross Profit:</strong>
+                    <div class="text-muted"><code>Gross Profit = Revenue − Cost</code></div>
+                </div>
+                <div class="list-group-item px-0">
+                    <strong>4. Profit Margin Percentage:</strong>
+                    <div class="text-muted"><code>Margin % = (Gross Profit / Revenue) × 100</code></div>
+                </div>
+                <div class="list-group-item px-0">
+                    <strong>5. Average Order Value (AOV):</strong>
+                    <div class="text-muted"><code>AOV = Total Revenue / Total Number of Orders</code></div>
+                </div>
+                <div class="list-group-item px-0">
+                    <strong>6. Month-over-Month (MoM) Growth:</strong>
+                    <div class="text-muted"><code>MoM Growth % = ((Revenue_{t} − Revenue_{t-1}) / Revenue_{t-1}) × 100</code></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Security & Deployment Architecture -->
+<div class="card border-0 p-4 shadow-sm" style="border-radius: var(--card-radius);">
+    <h5 class="fw-bold mb-3"><i class="fa-solid fa-shield-halved text-success me-2"></i> Security & Dual-Environment Deployment</h5>
+    <div class="row g-3" style="font-size: 0.9rem;">
+        <div class="col-md-6">
+            <h6 class="fw-bold text-dark"><i class="fa-solid fa-lock text-primary me-1"></i> Application Security Controls:</h6>
+            <ul class="text-muted ps-3 mb-0">
+                <li><strong>No Hardcoded Credentials:</strong> All database credentials and secret keys are isolated in <code>.env</code> and excluded from version control via <code>.gitignore</code>.</li>
+                <li><strong>SQL Injection Immunity:</strong> All database queries utilize parameterized prepared statements (e.g. <code>%s</code> / <code>?</code>), eliminating query concatenation risks.</li>
+                <li><strong>Safe Error Handling:</strong> Stack traces and database internals are shielded from client API responses.</li>
+                <li><strong>HTTP Security Headers:</strong> Incorporates <code>nosniff</code>, <code>SAMEORIGIN</code>, and XSS protection.</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h6 class="fw-bold text-dark"><i class="fa-solid fa-cloud-arrow-up text-info me-1"></i> Cloud Production Readiness:</h6>
+            <ul class="text-muted ps-3 mb-0">
+                <li><strong>Dual-Engine Compatibility:</strong> The backend seamlessly supports MySQL (Aiven, PlanetScale, Railway) and local SQLite fallback.</li>
+                <li><strong>Environment Switching:</strong> Transitioning from development to production requires only setting <code>DB_HOST</code> and <code>DB_PASSWORD</code> in cloud environment variables.</li>
+                <li><strong>WSGI Deployment:</strong> Pre-configured for high-throughput WSGI servers (<code>gunicorn</code> for Linux/Docker, <code>waitress</code> for Windows).</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

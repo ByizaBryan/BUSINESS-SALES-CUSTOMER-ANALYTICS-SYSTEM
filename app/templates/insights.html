@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}InsightMart - Business Insights & Executive Recommendations{% endblock %}
+{% block page_title %}Executive Business Insights & Decision Support{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 bg-primary text-white p-4" style="border-radius: var(--card-radius);">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div>
+                    <h4 class="fw-bold mb-1"><i class="fa-solid fa-brain me-2"></i> Automated Business Intelligence Engine</h4>
+                    <p class="mb-0 text-white-50">Empirically derived findings computed dynamically from database transactions.</p>
+                </div>
+                <div>
+                    <span class="badge bg-white text-primary px-3 py-2 fw-bold" style="font-size: 0.88rem;">
+                        <i class="fa-solid fa-bolt me-1 text-warning"></i> 5 Active Recommendations
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dynamic Insight Cards Container -->
+<div id="insightsContainer">
+    <div class="text-center text-muted py-5">
+        <div class="spinner-border text-primary mb-3" role="status"></div>
+        <div>Calculating business insights from database transactions...</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/insights.js') }}"></script>
+{% endblock %}
