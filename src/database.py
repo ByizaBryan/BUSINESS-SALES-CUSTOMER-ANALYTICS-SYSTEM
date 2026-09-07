@@ -28,7 +28,11 @@ else:
 # Database configuration settings
 DB_TYPE = os.getenv("DB_TYPE", "mysql").lower()
 DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_PORT = int(os.getenv("DB_PORT", 3306))
+raw_port = os.getenv("DB_PORT", "3306")
+try:
+    DB_PORT = int(raw_port) if raw_port and str(raw_port).strip().isdigit() else 3306
+except Exception:
+    DB_PORT = 3306
 DB_NAME = os.getenv("DB_NAME", "business_sales_db")
 DB_USER = os.getenv("DB_USER", "root")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "")
