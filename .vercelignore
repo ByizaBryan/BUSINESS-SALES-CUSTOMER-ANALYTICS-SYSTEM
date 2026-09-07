@@ -1,0 +1,15 @@
+# Vercel Ignore File
+.git
+.github
+tests
+notebooks
+data/raw
+docs
+.pytest_cache
+__pycache__
+*.pyc
+venv
+env
+.venv
+requirements-dev.txt
+reports

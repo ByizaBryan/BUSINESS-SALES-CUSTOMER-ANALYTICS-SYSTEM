@@ -21,10 +21,11 @@ load_dotenv(ROOT_DIR / ".env")
 
 def create_app():
     """Application factory initializing Flask app and extensions."""
+    app_dir = Path(__file__).resolve().parent
     app = Flask(
         __name__,
-        template_folder="templates",
-        static_folder="static"
+        template_folder=str(app_dir / "templates"),
+        static_folder=str(app_dir / "static")
     )
 
     # Configuration

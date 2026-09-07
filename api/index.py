@@ -15,8 +15,23 @@ sys.path.insert(0, str(ROOT_DIR))
 # Set Vercel serverless environment flag
 os.environ["VERCEL"] = "1"
 
-from app.app import app
+try:
+    from app.app import app
+except Exception as e:
+    import traceback
+    from flask import Flask, jsonify
 
-# Vercel WSGI entrypoint exports 'app'
-if __name__ == "__main__":
-    app.run()
+    err_trace = traceback.format_exc()
+    app = Flask(__name__)
+
+    @app.route("/", defaults={"path": ""})
+    @app.route("/<path:path>")
+    def catch_all_error(path):
+        return jsonify({
+            "error": "InsightMart Serverless Startup Failure",
+            "message": str(e),
+            "traceback": err_trace,
+            "sys_path": sys.path,
+            "cwd": os.getcwd()
+        }), 500
+
