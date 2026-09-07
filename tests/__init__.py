@@ -1,0 +1,3 @@
+"""
+InsightMart Test Suite Package
+"""
