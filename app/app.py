@@ -22,11 +22,25 @@ load_dotenv(ROOT_DIR / ".env")
 def create_app():
     """Application factory initializing Flask app and extensions."""
     app_dir = Path(__file__).resolve().parent
+    template_dir = app_dir / "templates"
+    static_dir = app_dir / "static"
+
     app = Flask(
         __name__,
-        template_folder=str(app_dir / "templates"),
-        static_folder=str(app_dir / "static")
+        template_folder=str(template_dir),
+        static_folder=str(static_dir)
     )
+
+    # Multi-path Jinja loader fallback
+    import jinja2
+    candidate_template_dirs = [
+        template_dir,
+        ROOT_DIR / "app" / "templates",
+        ROOT_DIR / "templates"
+    ]
+    valid_template_dirs = [str(p) for p in candidate_template_dirs if p.is_dir()]
+    if valid_template_dirs:
+        app.jinja_loader = jinja2.FileSystemLoader(valid_template_dirs)
 
     # Configuration
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "insightmart-production-secret-key-default-2026")
@@ -52,15 +66,33 @@ def create_app():
     def handle_404(e):
         if request.path.startswith("/api/"):
             return jsonify({"success": False, "error": "API endpoint not found"}), 404
-        return render_template("base.html", error_title="404 - Page Not Found",
-                               error_msg="The page you requested does not exist."), 404
+        try:
+            return render_template("base.html", error_title="404 - Page Not Found",
+                                   error_msg="The page you requested does not exist."), 404
+        except Exception:
+            return "<h1>404 - Page Not Found</h1><p>The requested URL was not found on this server.</p>", 404
 
     @app.errorhandler(500)
     def handle_500(e):
         if request.path.startswith("/api/"):
-            return jsonify({"success": False, "error": "Internal server error occurred"}), 500
-        return render_template("base.html", error_title="500 - Server Error",
-                               error_msg="A backend processing error occurred. Please try again."), 500
+            return jsonify({"success": False, "error": f"Internal server error: {str(e)}"}), 500
+        try:
+            return render_template("base.html", error_title="500 - Server Error",
+                                   error_msg="A backend processing error occurred. Please try again."), 500
+        except Exception:
+            return f"<h1>500 - Server Error</h1><p>{str(e)}</p>", 500
+
+    @app.errorhandler(Exception)
+    def handle_unexpected_exception(e):
+        import traceback
+        tb = traceback.format_exc()
+        if request.path.startswith("/api/"):
+            return jsonify({"success": False, "error": str(e), "traceback": tb}), 500
+        try:
+            return render_template("base.html", error_title="500 - System Error",
+                                   error_msg=str(e)), 500
+        except Exception:
+            return f"<h1>500 - System Error</h1><p>{str(e)}</p><pre>{tb}</pre>", 500
 
     return app
 

@@ -45,7 +45,8 @@ _MYSQL_AVAILABLE = None
 
 
 def _init_serverless_sqlite(target_path: Path):
-    """Initializes SQLite database in /tmp if bundled db was not found."""
+    """Initializes SQLite database in temporary directory if bundled db was not found."""
+    target_path.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(str(target_path))
     schema_path = ROOT_DIR / "database" / "database_schema.sql"
     seed_path = ROOT_DIR / "database" / "sample_data.sql"
@@ -85,17 +86,19 @@ def get_connection():
         has_remote_mysql = DB_TYPE == "mysql" and DB_HOST not in ["localhost", "127.0.0.1", ""] and DB_PASSWORD
         if not has_remote_mysql:
             bundled_db = ROOT_DIR / "data" / "processed" / "business_sales.db"
-            # 1. Prefer direct read-only URI connection (0 disk copy, instant performance)
+
+            # 1. First attempt: Direct zero-copy immutable read-only connection
             if bundled_db.exists() and bundled_db.stat().st_size > 1000:
                 try:
-                    conn = sqlite3.connect(f"file:{bundled_db.resolve().as_posix()}?mode=ro", uri=True)
+                    conn = sqlite3.connect(f"file:{bundled_db.resolve().as_posix()}?mode=ro&immutable=1", uri=True)
                     conn.row_factory = sqlite3.Row
                     return conn, "sqlite"
-                except Exception as e:
-                    logger.warning(f"Read-only URI connection failed ({e}), falling back to tmp copy.")
+                except Exception as uri_err:
+                    logger.warning(f"Direct read-only URI connection failed ({uri_err}); trying temp storage.")
 
-            # 2. Serverless temporary directory copy fallback
-            tmp_dir = Path("/tmp") if os.name != "nt" else Path(os.environ.get("TEMP", "C:/tmp"))
+            # 2. Second attempt: Temp directory copy
+            import tempfile
+            tmp_dir = Path(tempfile.gettempdir())
             tmp_dir.mkdir(parents=True, exist_ok=True)
             tmp_db = tmp_dir / "business_sales.db"
 
@@ -105,6 +108,7 @@ def get_connection():
                     shutil.copyfile(bundled_db, tmp_db)
                 else:
                     _init_serverless_sqlite(tmp_db)
+
             conn = sqlite3.connect(str(tmp_db))
             conn.row_factory = sqlite3.Row
             return conn, "sqlite"

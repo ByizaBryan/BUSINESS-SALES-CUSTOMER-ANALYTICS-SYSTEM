@@ -4,11 +4,9 @@
 
 # Core Web & API Framework
 flask>=3.0.0
+jinja2>=3.1.2
+werkzeug>=3.0.0
 python-dotenv>=1.0.0
 
 # Database Connectors (MySQL)
 pymysql>=1.1.0
-
-# Production WSGI Servers (Optional / Cloud Deployments)
-gunicorn>=21.0.0; platform_system != "Windows"
-waitress>=3.0.0; platform_system == "Windows"
