@@ -39,6 +39,7 @@ ENV/
 *.sqlite
 *.sqlite3
 *.db
+!data/processed/business_sales.db
 
 # Operating System files
 .DS_Store

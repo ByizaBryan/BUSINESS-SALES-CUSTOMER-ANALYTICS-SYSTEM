@@ -43,14 +43,58 @@ class DatabaseConnectionError(Exception):
 # Global cached connection status for the current runtime process
 _MYSQL_AVAILABLE = None
 
+
+def _init_serverless_sqlite(target_path: Path):
+    """Initializes SQLite database in /tmp if bundled db was not found."""
+    conn = sqlite3.connect(str(target_path))
+    schema_path = ROOT_DIR / "database" / "database_schema.sql"
+    seed_path = ROOT_DIR / "database" / "sample_data.sql"
+    if schema_path.exists():
+        with open(schema_path, "r", encoding="utf-8") as f:
+            clean_script = f.read()
+            clean_script = re.sub(r'CREATE DATABASE.*?;', '', clean_script, flags=re.IGNORECASE | re.DOTALL)
+            clean_script = re.sub(r'USE\s+\w+;', '', clean_script, flags=re.IGNORECASE)
+            clean_script = re.sub(r'ENGINE\s*=\s*InnoDB', '', clean_script, flags=re.IGNORECASE)
+            clean_script = re.sub(r'AUTO_INCREMENT', 'AUTOINCREMENT', clean_script, flags=re.IGNORECASE)
+            clean_script = re.sub(r'INT\s+AUTOINCREMENT', 'INTEGER', clean_script, flags=re.IGNORECASE)
+            clean_script = re.sub(r'INT\s+PRIMARY KEY\s+AUTOINCREMENT', 'INTEGER PRIMARY KEY AUTOINCREMENT', clean_script, flags=re.IGNORECASE)
+            clean_script = re.sub(r'CREATE OR REPLACE VIEW', 'CREATE VIEW IF NOT EXISTS', clean_script, flags=re.IGNORECASE)
+            conn.executescript(clean_script)
+    if seed_path.exists():
+        with open(seed_path, "r", encoding="utf-8") as f:
+            seed_script = f.read()
+            seed_script = re.sub(r'USE\s+\w+;', '', seed_script, flags=re.IGNORECASE)
+            conn.executescript(seed_script)
+    conn.commit()
+    conn.close()
+
+
 def get_connection():
     """
     Establishes and returns a database connection based on configuration.
     Attempts MySQL first if DB_TYPE is 'mysql'. Falls back cleanly to SQLite if
     the MySQL server cannot be reached, ensuring zero-downtime development and testing.
     Caches connection reachability during runtime to prevent repeated socket timeouts.
+    Supports Vercel serverless functions by isolating SQLite in /tmp.
     """
     global DB_TYPE, _MYSQL_AVAILABLE
+
+    # Serverless runtime detection (Vercel / AWS Lambda)
+    is_serverless = os.getenv("VERCEL") == "1" or "AWS_LAMBDA_FUNCTION_NAME" in os.environ
+    if is_serverless:
+        has_remote_mysql = DB_TYPE == "mysql" and DB_HOST not in ["localhost", "127.0.0.1", ""] and DB_PASSWORD
+        if not has_remote_mysql:
+            tmp_db = Path("/tmp/business_sales.db")
+            bundled_db = ROOT_DIR / "data" / "processed" / "business_sales.db"
+            if not tmp_db.exists() or tmp_db.stat().st_size < 1000:
+                if bundled_db.exists() and bundled_db.stat().st_size > 1000:
+                    import shutil
+                    shutil.copyfile(bundled_db, tmp_db)
+                else:
+                    _init_serverless_sqlite(tmp_db)
+            conn = sqlite3.connect(str(tmp_db))
+            conn.row_factory = sqlite3.Row
+            return conn, "sqlite"
 
     if DB_TYPE == "sqlite" or _MYSQL_AVAILABLE is False:
         os.makedirs(os.path.dirname(os.path.abspath(SQLITE_PATH)), exist_ok=True)
