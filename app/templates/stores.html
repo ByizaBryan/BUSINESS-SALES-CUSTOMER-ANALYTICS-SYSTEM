@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}InsightMart - Store Benchmarking & Regional Analytics{% endblock %}
+{% block page_title %}Retail Stores & Regional Performance{% endblock %}
+
+{% block content %}
+<!-- Store Overview KPIs -->
+<div class="row g-3 mb-4">
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-blue">
+            <div class="kpi-header">
+                <span class="kpi-title">Active Retail Branches</span>
+                <div class="kpi-icon"><i class="fa-solid fa-store"></i></div>
+            </div>
+            <div class="kpi-value">12 Stores</div>
+            <div class="kpi-subtext">Across 5 US Geographic Regions</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-green">
+            <div class="kpi-header">
+                <span class="kpi-title">Top Flagship Location</span>
+                <div class="kpi-icon"><i class="fa-solid fa-trophy"></i></div>
+            </div>
+            <div class="kpi-value" style="font-size: 1.35rem;">Manhattan Flagship</div>
+            <div class="kpi-subtext text-success fw-bold">$731k+ Gross Revenue</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-purple">
+            <div class="kpi-header">
+                <span class="kpi-title">Average Store Revenue</span>
+                <div class="kpi-icon"><i class="fa-solid fa-chart-simple"></i></div>
+            </div>
+            <div class="kpi-value" id="avgStoreRevKpi">$549,843</div>
+            <div class="kpi-subtext">Per store branch average</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="kpi-card kpi-amber">
+            <div class="kpi-header">
+                <span class="kpi-title">Developing Branch Alert</span>
+                <div class="kpi-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            </div>
+            <div class="kpi-value" style="font-size: 1.35rem;">Minneapolis Plaza</div>
+            <div class="kpi-subtext text-warning fw-bold">Review Foot Traffic & Mix</div>
+        </div>
+    </div>
+</div>
+
+<!-- Regional Comparison Charts -->
+<div class="row g-4 mb-4">
+    <div class="col-xl-7">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Store Revenue & Profit Comparison</h5>
+                    <div class="card-subtitle">Benchmarking financial productivity across all 12 branches</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 340px;">
+                <canvas id="storesComparisonBarChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-5">
+        <div class="chart-card">
+            <div class="card-header-clean">
+                <div>
+                    <h5 class="card-title">Regional Revenue Share</h5>
+                    <div class="card-subtitle">Midwest, Northeast, South, West, Northwest</div>
+                </div>
+            </div>
+            <div class="chart-container" style="height: 340px;">
+                <canvas id="regionalShareDonutChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Detailed Store Benchmarking Table -->
+<div class="table-card">
+    <div class="table-header">
+        <div>
+            <h5 class="table-title">Retail Branch Benchmarking Matrix</h5>
+            <div class="text-muted" style="font-size: 0.82rem;">Complete financial and operational performance by branch</div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table custom-table" id="storeBenchmarkTable">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Store Branch</th>
+                    <th>City</th>
+                    <th>Region</th>
+                    <th class="text-center">Transactions</th>
+                    <th class="text-center">Units Sold</th>
+                    <th class="text-end">Total Revenue</th>
+                    <th class="text-end">Gross Profit</th>
+                    <th class="text-end">AOV</th>
+                    <th class="text-end">Profit Margin</th>
+                    <th class="text-center">Tier</th>
+                </tr>
+            </thead>
+            <tbody id="storeBenchmarkTableBody">
+                <tr><td colspan="11" class="text-center text-muted py-4">Loading store benchmarks...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/stores.js') }}"></script>
+{% endblock %}
