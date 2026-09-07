@@ -84,8 +84,21 @@ def get_connection():
     if is_serverless:
         has_remote_mysql = DB_TYPE == "mysql" and DB_HOST not in ["localhost", "127.0.0.1", ""] and DB_PASSWORD
         if not has_remote_mysql:
-            tmp_db = Path("/tmp/business_sales.db")
             bundled_db = ROOT_DIR / "data" / "processed" / "business_sales.db"
+            # 1. Prefer direct read-only URI connection (0 disk copy, instant performance)
+            if bundled_db.exists() and bundled_db.stat().st_size > 1000:
+                try:
+                    conn = sqlite3.connect(f"file:{bundled_db.resolve().as_posix()}?mode=ro", uri=True)
+                    conn.row_factory = sqlite3.Row
+                    return conn, "sqlite"
+                except Exception as e:
+                    logger.warning(f"Read-only URI connection failed ({e}), falling back to tmp copy.")
+
+            # 2. Serverless temporary directory copy fallback
+            tmp_dir = Path("/tmp") if os.name != "nt" else Path(os.environ.get("TEMP", "C:/tmp"))
+            tmp_dir.mkdir(parents=True, exist_ok=True)
+            tmp_db = tmp_dir / "business_sales.db"
+
             if not tmp_db.exists() or tmp_db.stat().st_size < 1000:
                 if bundled_db.exists() and bundled_db.stat().st_size > 1000:
                     import shutil
